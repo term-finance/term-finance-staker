@@ -7,8 +7,8 @@ on:
         description: 'Stake Token Address'
         required: true
         type: string
-      paymentTokenAddress:
-        description: 'Payment Token Address'
+      payoutTokenAddress:
+        description: 'Payout Token Address'
         required: true
         type: string
       adminAddress:
@@ -38,7 +38,7 @@ jobs:
           PRIVATE_KEY: ${{ secrets.PRIVATE_KEY }}
           ETHERSCAN_API_KEY: ${{ secrets.ETHERSCAN_API_KEY }}
           STAKE_TOKEN_ADDRESS: ${{ github.event.inputs.stakeTokenAddress }}
-          PAYMENT_TOKEN_ADDRESS: ${{ github.event.inputs.paymentTokenAddress }}
+          PAYOUT_TOKEN_ADDRESS: ${{ github.event.inputs.payoutTokenAddress }}
           ADMIN: ${{ github.event.inputs.adminAddress }}
         run: |
           forge script script/Deploy.s.sol:Deploy --rpc-url $RPC_URL --private-key $PRIVATE_KEY --verify

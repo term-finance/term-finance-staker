@@ -24,13 +24,14 @@ jobs:
       url: https://term-finance.github.io/term-finance-staker/
     steps:
     - name: Checkout repository
-      uses: actions/checkout@v2
-
-    - name: Set up Foundry
-      run: |
-        curl -L https://foundry.paradigm.xyz | bash
-        foundryup
-
+      uses: actions/checkout@master
+      with:
+          fetch-depth: 0
+          submodules: recursive
+    - uses: foundry-rs/foundry-toolchain@v1
+    - run: forge install
+    - run: forge build
+    - run: forge tree
     - name: Deploy contract
       env:
         RPC_URL: ${{ secrets.SEPOLIA_RPC_URL }}

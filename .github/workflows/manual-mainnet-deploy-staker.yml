@@ -32,6 +32,6 @@ jobs:
         RPC_URL: ${{ secrets.MAINNET_RPC_URL }}
         PRIVATE_KEY: ${{ secrets.PRIVATE_KEY }}
         STAKE_TOKEN_ADDRESS: ${{ github.event.inputs.stakeTokenAddress }}
-        PAYMENT_TOKEN_ADDRESS: ${{ github.event.inpouts.paymentTokenAddress }}
+        PAYMENT_TOKEN_ADDRESS: ${{ github.event.inputs.paymentTokenAddress }}
       run: |
         forge script script/Deploy.s.sol:Deploy --rpc-url $RPC_URL --private-key $PRIVATE_KEY 

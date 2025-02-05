@@ -13,35 +13,26 @@ import {INotifiableRewardReceiver} from "src/interfaces/INotifiableRewardReceive
 import {IUniswapV3FactoryOwnerActions} from "src/interfaces/IUniswapV3FactoryOwnerActions.sol";
 
 contract Deploy is Script {
-  function run() public returns (V3FactoryOwner, UniStaker) {
+  function run() public  {
     uint256 deployerPrivateKey = vm.envUint("PRIVATE_KEY");
     address STAKE_TOKEN_ADDRESS = vm.envAddress("STAKE_TOKEN_ADDRESS");
     address PAYOUT_TOKEN_ADDRESS = vm.envAddress("PAYOUT_TOKEN_ADDRESS");
+    address ADMIN = vm.envAddress("ADMIN");
 
     vm.startBroadcast(deployerPrivateKey);
     // Deploy the staking contract
-    UniStaker uniStaker = new UniStaker(
+    TermStaker termStaker = new TermStaker(
       IERC20(PAYOUT_TOKEN_ADDRESS),
       IERC20Delegates(STAKE_TOKEN_ADDRESS),
       vm.addr(deployerPrivateKey)
     );
 
-    // Deploy a new owner for the V3 factory owner actions contract.
-    V3FactoryOwner v3FactoryOwner = new V3FactoryOwner(
-      UNISWAP_GOVERNOR_TIMELOCK,
-      IUniswapV3FactoryOwnerActions(UNISWAP_V3_FACTORY_ADDRESS),
-      IERC20(PAYOUT_TOKEN_ADDRESS),
-      PAYOUT_AMOUNT,
-      INotifiableRewardReceiver(uniStaker)
-    );
-
     // Enable the v3FactoryOwner as a UniStaker reward notifier
-    uniStaker.setRewardNotifier(address(v3FactoryOwner), true);
+    termStaker.setRewardNotifier(ADMIN, true);
 
     // Change UniStaker admin from `msg.sender` to the Governor timelock
-    uniStaker.setAdmin(UNISWAP_GOVERNOR_TIMELOCK);
+    termStaker.setAdmin(ADMIN);
     vm.stopBroadcast();
 
-    return (v3FactoryOwner, uniStaker);
   }
 }

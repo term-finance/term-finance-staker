@@ -24,8 +24,8 @@ jobs:
       url: https://term-finance.github.io/term-finance-staker/
     steps:
      - name: Checkout repository
-      uses: actions/checkout@master
-      with:
+       uses: actions/checkout@master
+       with:
           fetch-depth: 0
           submodules: recursive
     - uses: foundry-rs/foundry-toolchain@v1

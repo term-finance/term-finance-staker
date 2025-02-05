@@ -34,4 +34,4 @@ jobs:
         STAKE_TOKEN_ADDRESS: ${{ github.event.inputs.stakeTokenAddress }}
         PAYMENT_TOKEN_ADDRESS: ${{ github.event.inpouts.paymentTokenAddress }}
       run: |
-        forge script script/Deploy.s.sol:Deploy --rpc-url $RPC_URL --private-key $PRIVATE_KEY 
+        forge script script/Deploy.s.sol:Deploy --rpc-url $RPC_URL --private-key $PRIVATE_KEY --broadcast

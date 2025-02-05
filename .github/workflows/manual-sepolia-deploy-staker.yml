@@ -35,8 +35,9 @@ jobs:
       env:
         RPC_URL: ${{ secrets.SEPOLIA_RPC_URL }}
         PRIVATE_KEY: ${{ secrets.PRIVATE_KEY }}
+        ETHERSCAN_API_KEY: ${{ secrets.ETHERSCAN_API_KEY }}
         STAKE_TOKEN_ADDRESS: ${{ github.event.inputs.stakeTokenAddress }}
         PAYMENT_TOKEN_ADDRESS: ${{ github.event.inputs.paymentTokenAddress }}
         ADMIN: ${{ github.event.inputs.adminAddress }}
       run: |
-        forge script script/Deploy.s.sol:Deploy --rpc-url $RPC_URL --private-key $PRIVATE_KEY --broadcast
+        forge script script/Deploy.s.sol:Deploy --rpc-url $RPC_URL --private-key $PRIVATE_KEY --broadcast --verify

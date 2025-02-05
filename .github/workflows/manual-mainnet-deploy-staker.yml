@@ -1,4 +1,4 @@
-name: [mainnet-deploy] deploy staker
+name: "[mainnet-deploy] deploy staker"
 
 on:
   workflow_dispatch:

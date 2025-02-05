@@ -1,4 +1,4 @@
-name: [sepolia-deploy] deploy staker
+name: "[sepolia-deploy] deploy staker"
 
 on:
   workflow_dispatch:

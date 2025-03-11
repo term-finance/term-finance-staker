@@ -193,7 +193,7 @@ contract TermStaker is INotifiableRewardReceiver, Multicall, EIP712, Nonces {
   /// @param _stakeToken Delegable governance token which users will stake to earn rewards.
   /// @param _admin Address which will have permission to manage rewardNotifiers.
   constructor(IERC20 _rewardToken, IERC20Delegates _stakeToken, address _admin)
-    EIP712("UniStaker", "1")
+    EIP712("TermStaker", "1")
   {
     REWARD_TOKEN = _rewardToken;
     STAKE_TOKEN = _stakeToken;

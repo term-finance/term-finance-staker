@@ -11,8 +11,8 @@ import {Nonces} from "openzeppelin/utils/Nonces.sol";
 import {SignatureChecker} from "openzeppelin/utils/cryptography/SignatureChecker.sol";
 import {EIP712} from "openzeppelin/utils/cryptography/EIP712.sol";
 
-/// @title UniStaker
-/// @author ScopeLift
+/// @title TermStaker (adopted from UniStaker)
+/// @author adopted by Term Labs from ScopeLift
 /// @notice This contract manages the distribution of rewards to stakers. Rewards are denominated
 /// in an ERC20 token and sent to the contract by authorized reward notifiers. To stake means to
 /// deposit a designated, delegable ERC20 governance token and leave it over a period of time.

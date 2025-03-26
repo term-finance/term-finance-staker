@@ -15,6 +15,10 @@ on:
         description: 'Admin Address'
         required: true
         type: string
+      rewardNotifier:
+        description: 'Reward Notifier Address'
+        required: true
+        type: string
 
 jobs:
   deploy:
@@ -40,5 +44,6 @@ jobs:
           STAKE_TOKEN_ADDRESS: ${{ github.event.inputs.stakeTokenAddress }}
           PAYOUT_TOKEN_ADDRESS: ${{ github.event.inputs.payoutTokenAddress }}
           ADMIN: ${{ github.event.inputs.adminAddress }}
+          REWARD_NOTIFIER: ${{ github.event.inputs.rewardNotifier }}
         run: |
-          forge script script/Deploy.s.sol:Deploy --rpc-url $RPC_URL --private-key $PRIVATE_KEY --verify
+          forge script script/Deploy.s.sol:Deploy --rpc-url $RPC_URL --private-key $PRIVATE_KEY --broadcast --verify

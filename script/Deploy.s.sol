@@ -18,6 +18,7 @@ contract Deploy is Script {
     address STAKE_TOKEN_ADDRESS = vm.envAddress("STAKE_TOKEN_ADDRESS");
     address PAYOUT_TOKEN_ADDRESS = vm.envAddress("PAYOUT_TOKEN_ADDRESS");
     address ADMIN = vm.envAddress("ADMIN");
+    address rewardNotifier = vm.envAddress("REWARD_NOTIFIER");
 
     vm.startBroadcast(deployerPrivateKey);
     // Deploy the staking contract
@@ -28,7 +29,7 @@ contract Deploy is Script {
     );
 
     // Enable the v3FactoryOwner as a UniStaker reward notifier
-    termStaker.setRewardNotifier(ADMIN, true);
+    termStaker.setRewardNotifier(rewardNotifier, true);
 
     // Change UniStaker admin from `msg.sender` to the Governor timelock
     termStaker.setAdmin(ADMIN);

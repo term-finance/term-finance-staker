@@ -80,7 +80,7 @@ jobs:
       # is why we use both in this way.
       - name: Post coverage report
         if: github.event_name == 'pull_request' # This action fails when ran outside of a pull request.
-        uses: romeovs/lcov-reporter-action@v0.3.1
+        uses: romeovs/lcov-reporter-action@v0.4.0
         with:
           delete-old-comments: true
           lcov-file: ./lcov.info

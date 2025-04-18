@@ -27,7 +27,7 @@ jobs:
           role-session-name: term-finance-staker-github-workflow
           aws-region: ${{ secrets.AWS_REGION }}
       - run: aws s3 sync package/ s3://${{ secrets.S3_BUCKET }}/${{ github.event.release.name }}
-      - uses: actions/upload-artifact@v4.4.0
+      - uses: actions/upload-artifact@v4.6.2
         with:
           name: abis
           path: abi/

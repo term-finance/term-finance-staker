@@ -1,11 +1,6 @@
 name: CI
 
-on:
-  workflow_dispatch:
-  pull_request:
-  push:
-    branches:
-      - main
+on: [push, workflow_dispatch]
 
 env:
   FOUNDRY_PROFILE: ci
@@ -20,10 +15,14 @@ jobs:
       - name: Install Foundry
         uses: foundry-rs/foundry-toolchain@v1
 
+      - name: Forge version
+        run: forge --version
+
       - name: Build contracts
-        run: |
-          forge --version
-          forge build --sizes
+        run: forge build --sizes
+
+      - name: Build package
+        run: ./build-package.sh ./package
 
   test:
     runs-on: ubuntu-latest

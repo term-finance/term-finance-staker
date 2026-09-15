@@ -130,7 +130,8 @@ contract TermStakerHandler is CommonBase, StdCheats, StdUtils {
     TermStaker.DepositIdentifier _depositId =
       TermStaker.DepositIdentifier.wrap(_getActorRandDepositId(_actorDepositSeed));
     (uint96 _balance,,,) = uniStaker.deposits(_depositId);
-    _amount = uint96(bound(_amount, 0, _balance));
+    // Stay inside uint96: the deposit's balance is one, and an overflow is not a valid stakeMore.
+    _amount = uint96(bound(_amount, 0, type(uint96).max - _balance));
     // stake() transferred the depositor's whole minted balance, so stakeMore needs fresh tokens.
     _mintStakeToken(_currentActor, _amount);
     vm.startPrank(_currentActor);

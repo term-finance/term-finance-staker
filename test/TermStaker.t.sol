@@ -1951,8 +1951,7 @@ contract AlterDelegateeOnBehalf is TermStakerTest {
 
     bytes32 _message = keccak256(
       abi.encode(
-        uniStaker.ALTER_DELEGATEE_TYPEHASH(), _depositId, _newDelegatee, _depositor, _suppliedNonce
-      )
+        uniStaker.ALTER_DELEGATEE_TYPEHASH(), _depositId, _newDelegatee, _depositor, _suppliedNonce, _deadline)
     );
 
     bytes32 _messageHash =

@@ -8,6 +8,9 @@
     "@uniswap/v3-core=lib/v3-core",
   ]
   solc_version = "0.8.23"
+  # test_NeverReusesADepositIdentifier makes 5,000+ deposits in one test, past the 2^30
+  # default gas limit current forge applies.
+  gas_limit = "18446744073709551615"
   verbosity = 3
 
 [profile.ci]

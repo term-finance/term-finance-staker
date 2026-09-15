@@ -30,6 +30,8 @@ jobs:
       - uses: actions/checkout@v4
         with:
           submodules: recursive
+          # The tests run fuzzed code, and nothing after checkout needs Git credentials.
+          persist-credentials: false
 
       - name: Install Foundry
         uses: foundry-rs/foundry-toolchain@v1

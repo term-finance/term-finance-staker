@@ -6,7 +6,7 @@ The invariant suite is a collection of tests designed to build confidence around
 
 - The total staked balance should equal the sum of all individual depositors' balances
 - The sum of beneficiary earning power should equal the total staked balance
-- The sum of all surrogate balance should equal the total staked balance
+- The sum of all surrogate balances should equal the total staked balance
 - Cumulative deposits minus withdrawals should equal the total staked balance
 - The sum of all notified rewards should equal all claimed rewards plus the rewards balance in the staking contract (the handler makes no stray transfers in; once it does, this becomes greater or equal)
 - Sum of unclaimed reward across all beneficiaries should be less than or equal to total rewards

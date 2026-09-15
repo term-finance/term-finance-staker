@@ -46,7 +46,8 @@ contract PercentAssertions is Test {
       fail();
     }
 
-    uint256 minBound = b - 1;
+    // b == 0 leaves a == 0 as the only value that passes, which the check below allows.
+    uint256 minBound = b == 0 ? 0 : b - 1;
 
     if (!((a == b) || (a == minBound))) {
       emit log("Error: a == b || a  == b-1");

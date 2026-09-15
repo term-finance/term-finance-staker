@@ -8,7 +8,7 @@ The invariant suite is a collection of tests designed to build confidence around
 - The sum of beneficiary earning power should equal the total staked balance
 - The sum of all surrogate balance should equal the total staked balance
 - Cumulative deposits minus withdrawals should equal the total staked balance
-- The sum of all notified rewards should be greater or equal to all claimed rewards plus the rewards balance in the staking contract (TODO: not strictly equal because of stray transfers in, which are not yet implemented in handler)
+- The sum of all notified rewards should equal all claimed rewards plus the rewards balance in the staking contract (the handler makes no stray transfers in; once it does, this becomes greater or equal)
 - Sum of unclaimed reward across all beneficiaries should be less than or equal to total rewards
 - `rewardPerTokenAccumulatedCheckpoint` should be greater or equal to the last `rewardPerTokenAccumulatedCheckpoint` value
 
@@ -40,10 +40,10 @@ These actions are typical user actions that can be taken on the system. They are
 
 - [ ] Staking without sufficient ERC20 approval
 - [ ] Stake more on a deposit that does not belong to you
-- [ ] State more on a deposit that does not exist
+- [ ] Stake more on a deposit that does not exist
 - [ ] Alter beneficiary and alter delegatee on a deposit that is not yours or does not exist
 - [ ] withdraw on deposit that's not yours
-- [ ] call notifyRewardsAmount if you are not rewards notifier, or insufficient/incorrect reward balance
+- [ ] call notifyRewardAmount if you are not rewards notifier, or insufficient/incorrect reward balance
 - [ ] setAdmin and setRewardNotifier without being the admin
 - [ ] Invalid signature on the `onBehalf` methods
 - [ ] multicall

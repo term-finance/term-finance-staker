@@ -97,6 +97,8 @@ contract TermStakerHandler is CommonBase, StdCheats, StdUtils {
     doCheckpoints
   {
     _createDepositor();
+    // The staker as its own beneficiary would pay rewards to itself, which no claim can do.
+    vm.assume(_beneficiary != address(uniStaker));
 
     _beneficiaries.add(_beneficiary);
     _delegates.add(_delegatee);
@@ -129,6 +131,8 @@ contract TermStakerHandler is CommonBase, StdCheats, StdUtils {
       TermStaker.DepositIdentifier.wrap(_getActorRandDepositId(_actorDepositSeed));
     (uint96 _balance,,,) = uniStaker.deposits(_depositId);
     _amount = uint96(bound(_amount, 0, _balance));
+    // stake() transferred the depositor's whole minted balance, so stakeMore needs fresh tokens.
+    _mintStakeToken(_currentActor, _amount);
     vm.startPrank(_currentActor);
     stakeToken.approve(address(uniStaker), _amount);
     uniStaker.stakeMore(_depositId, _amount);

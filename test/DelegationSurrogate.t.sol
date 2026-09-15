@@ -23,7 +23,7 @@ contract DelegationSurrogateTest is Test {
 }
 
 contract Constructor is DelegationSurrogateTest {
-  function testFuzz_DelegatesToDeployer(address _deployer, address _delegatee) public {
+  function testFuzz_DelegatesToDelegatee(address _deployer, address _delegatee) public {
     DelegationSurrogate _surrogate = __deploy(_deployer, _delegatee);
     assertEq(_delegatee, govToken.delegates(address(_surrogate)));
   }

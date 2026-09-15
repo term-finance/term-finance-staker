@@ -5,9 +5,9 @@ import {IERC20Delegates} from "src/interfaces/IERC20Delegates.sol";
 import {ERC20, ERC20Permit} from "openzeppelin/token/ERC20/extensions/ERC20Permit.sol";
 
 /// @dev An ERC20Permit token that allows for public minting and mocks the delegation methods used
-/// in ERC20Votes governance tokens. It does not included check pointing functionality. This
-/// contract is intended only for use as a stand in for contracts that interface with ERC20Votes
-// tokens.
+/// in ERC20Votes governance tokens. It does not include checkpointing functionality. This
+/// contract is intended only for use as a stand-in for contracts that interface with ERC20Votes
+/// tokens.
 contract ERC20VotesMock is IERC20Delegates, ERC20Permit {
   /// @dev Track delegations for mocked delegation methods
   mapping(address account => address delegate) private delegations;
